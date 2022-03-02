@@ -44,9 +44,11 @@ func primeNum(intChan chan int, primeChan chan int, exitChan chan bool) {
 
 func main() {
 
-	intChan := make(chan int, 1000)
+	intChan := make(chan int, 8000)
 	primeChan := make(chan int, 2000) // 放入结果
 	exitChan := make(chan bool, 4)    // 标识退出的管道
+
+	// start := time.Now().Unix()
 
 	// 开启一个协程，向 intChan放入 1-8000 个数
 	go putNum(intChan)
@@ -65,6 +67,9 @@ func main() {
 			<-exitChan
 		}
 
+		// end := time.Now().Unix()
+		// fmt.Println("使用协程耗时:", end-start)
+
 		// 当我们从 exitChan 取出了4个结果，就可以放心的关闭 primeChan
 		close(primeChan)
 	}()
@@ -72,6 +77,7 @@ func main() {
 	// 遍历我们的 primeChan，把结果取出
 	for {
 		res, ok := <-primeChan
+		// _, ok := <-primeChan
 		if !ok {
 			break
 		}
