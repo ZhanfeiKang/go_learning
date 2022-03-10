@@ -10008,3 +10008,4 @@ bin/gopls.exe
 bin/gotests.exe
 bin/impl.exe
 bin/staticcheck.exe
+bin/gopls.exe~
