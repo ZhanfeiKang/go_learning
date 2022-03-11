@@ -15,16 +15,22 @@ func ShowMenu() {
 	fmt.Println("----------------1.显示在线用户列表------------------")
 	fmt.Println("----------------2.发送消息-------------------------")
 	fmt.Println("----------------3.信息列表-------------------------")
-	fmt.Println("----------------4.退出模型-------------------------")
+	fmt.Println("----------------4.退出系统-------------------------")
 	fmt.Print("请选择(1-4):")
 	var key int
+	var content string
+
+	// 因为，我们总会使用到 SmsProcess 实例，因此我们将其定义在 switch 外部
+	smsProcess := &SmsProcess{}
 	fmt.Scanf("%d\n", &key)
 	switch key {
 	case 1:
 		// fmt.Println("显示在线用户列表")
 		outputOnlineUser()
 	case 2:
-		fmt.Println("发送消息")
+		fmt.Println("你想对大家说点什么:")
+		fmt.Scanf("%s\n", &content)
+		smsProcess.SendGroupMes(content)
 	case 3:
 		fmt.Println("信息列表展示（查看历史记录）")
 	case 4:
@@ -62,6 +68,8 @@ func serverProcessMes(conn net.Conn) {
 			}
 			// 2. 把这个用户的信息，状态保存到客户端map[int]User中
 			updateUserStatus(&notifyUserStatusMes)
+		case message.SmsMesType: // 有人群发消息了
+			outputGroupMes(&mes)
 		default:
 			fmt.Println("服务器端返回了一个未知的消息类型")
 		}
