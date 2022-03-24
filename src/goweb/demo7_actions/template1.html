@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <meta charset="UTF-8" />
+    </head>
+
+    <body>
+        <div>后台传过来的数据是：{{.}}</div>
+        <div>包含template2.html里面的内容</div>
+        {{template "template2.html"}}
+        <hr />
+        将template1.html中得到的数据传入到template2.html后：
+        {{template "template2.html" .}}
+    </body>
+</html>

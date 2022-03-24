@@ -32,6 +32,7 @@ func readConf(name string) (err error) {
 		// 返回一个自定义错误
 		return errors.New("读取文件错误")
 	}
+
 }
 
 func test02() {
