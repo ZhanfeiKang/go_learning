@@ -2,14 +2,21 @@ package main
 
 import "fmt"
 
+type cb func(int) int
+
+func testCallBack(x int, f cb) {
+	f(x)
+}
+
+func callBack(x int) int {
+	fmt.Println("我是回调，x: ", x)
+	return x
+}
+
 func main() {
-	var (
-		// n1       float64
-		// n2       float64
-		operator byte
-	)
-	fmt.Println("请输入：")
-	fmt.Scanf("%d\n", &operator)
-	new_o := fmt.Sprintf("%c", operator)
-	fmt.Println(new_o)
+	testCallBack(1, callBack)
+	testCallBack(2, func(x int) int {
+		fmt.Println("我是回调,x: ", x)
+		return x
+	})
 }
