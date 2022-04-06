@@ -1,22 +1,24 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-type cb func(int) int
+func yuejieError() {
+	defer func() {
+		err := recover() //会捕获一个错误
+		if err != nil {
+			fmt.Println("123")
+		}
+	}()
+	var arr1 [3]int
+	for i := 0; i <= 3; i++ {
+		arr1[i] = 1
+	}
+	// var age int
+	// age = sdasda
 
-func testCallBack(x int, f cb) {
-	f(x)
 }
-
-func callBack(x int) int {
-	fmt.Println("我是回调，x: ", x)
-	return x
-}
-
 func main() {
-	testCallBack(1, callBack)
-	testCallBack(2, func(x int) int {
-		fmt.Println("我是回调,x: ", x)
-		return x
-	})
+	yuejieError()
 }
