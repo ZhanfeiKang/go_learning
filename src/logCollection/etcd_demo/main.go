@@ -23,14 +23,14 @@ func main() {
 
 	// put
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
-	// str := `[{"path":"D:/ProgramFiles/kafka_2.12-3.1.0/logs/s4.log","topic":"s4"},{"path":"D:/ProgramFiles/kafka_2.12-3.1.0/logs/web.log","topic":"web_log"}]`
+	str := `[{"path":"D:/ProgramFiles/kafka_2.12-3.1.0/logs/s4.log","topic":"s4"},{"path":"D:/ProgramFiles/kafka_2.12-3.1.0/logs/web.log","topic":"web_log"}]`
 	// str := `[{"path":"D:/ProgramFiles/kafka_2.12-3.1.0/logs/s4.log","topic":"s4"},
 	// 		{"path":"D:/ProgramFiles/kafka_2.12-3.1.0/logs/web.log","topic":"web_log"},
 	// 		{"path":"D:/ProgramFiles/kafka_2.12-3.1.0/logs/kkite.log","topic":"kkite_log"}]`
-	str := `[{"path":"D:/ProgramFiles/kafka_2.12-3.1.0/logs/s4.log","topic":"s4"},
-			{"path":"D:/ProgramFiles/kafka_2.12-3.1.0/logs/web.log","topic":"web_log"},
-			{"path":"D:/ProgramFiles/kafka_2.12-3.1.0/logs/kkite.log","topic":"kkite_log"},
-			{"path":"D:/ProgramFiles/kafka_2.12-3.1.0/logs/daisy.log","topic":"daisy_log"}]`
+	// str := `[{"path":"D:/ProgramFiles/kafka_2.12-3.1.0/logs/s4.log","topic":"s4"},
+	// 		{"path":"D:/ProgramFiles/kafka_2.12-3.1.0/logs/web.log","topic":"web_log"},
+	// 		{"path":"D:/ProgramFiles/kafka_2.12-3.1.0/logs/kkite.log","topic":"kkite_log"},
+	// 		{"path":"D:/ProgramFiles/kafka_2.12-3.1.0/logs/daisy.log","topic":"daisy_log"}]`
 	_, err = cli.Put(ctx, "collect_log_10.136.232.30_conf", str)
 	// _, err = cli.Put(context.TODO(), "daisy", "beautiful")
 	if err != nil {
