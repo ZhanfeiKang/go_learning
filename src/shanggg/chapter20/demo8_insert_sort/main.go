@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
 
 /*
 	插入排序基本思想:
@@ -9,7 +13,7 @@ import "fmt"
 	3.排序过程中每次从无序表中取出第一个元素，把它的排序码依次与有序表元素的排序码进行比较，将它插入到有序表中的适当位置，使之成为新的有序表。
 */
 
-func InsertSort(arr *[7]int) {
+func InsertSort(arr *[80000]int) {
 
 	for i := 1; i < len(arr); i++ {
 		// 完成第一次，给第二个元素找到合适的位置并插入
@@ -25,7 +29,7 @@ func InsertSort(arr *[7]int) {
 		if insertIndex+1 != i { // 本身就在原来的位置
 			arr[insertIndex+1] = insertVal
 		}
-		fmt.Printf("第%d次插入后的结果: %v\n", i, *arr)
+		// fmt.Printf("第%d次插入后的结果: %v\n", i, *arr)
 	}
 
 	/*
@@ -50,8 +54,18 @@ func InsertSort(arr *[7]int) {
 
 func main() {
 
-	arr := [7]int{23, 0, 12, 56, 34, -1, 55}
-	fmt.Println("\t原始数组 : ", arr)
+	// arr := [7]int{23, 0, 12, 56, 34, -1, 55}
+	// fmt.Println("\t原始数组 : ", arr)
 
+	var arr [80000]int
+	for i := 0; i < 80000; i++ {
+		arr[i] = rand.Intn(900000)
+	}
+
+	start := time.Now().Unix()
 	InsertSort(&arr)
+	end := time.Now().Unix()
+	fmt.Printf("插入排序耗时：%d秒", end-start)
+	// 插入排序耗时：2秒
+
 }

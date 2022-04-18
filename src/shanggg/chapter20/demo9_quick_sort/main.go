@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"time"
 )
 
@@ -10,7 +11,7 @@ import (
 // 1. left 表示 数组左边的下标
 // 2. right 表示 数组右边的下标
 // 3. array 表示 要排序的数组
-func QuickSort(left int, right int, array *[6]int) {
+func QuickSort(left int, right int, array *[8000000]int) {
 	l := left
 	r := right
 
@@ -66,7 +67,7 @@ func QuickSort(left int, right int, array *[6]int) {
 	}
 }
 
-func fastSort(start int, end int, arr *[6]int) {
+func fastSort(start int, end int, arr *[8000000]int) {
 	if start >= end {
 		return
 	}
@@ -96,17 +97,25 @@ func fastSort(start int, end int, arr *[6]int) {
 }
 
 func main() {
-	arr := [6]int{-9, 78, 0, 23, -567, 70}
+	// arr := [6]int{-9, 78, 0, 23, -567, 70}
 	// QuickSort(0, len(arr)-1, &arr)
-	start := time.Now().UnixNano()
-	fastSort(0, len(arr)-1, &arr)
-	end := time.Now().UnixNano()
-	fmt.Println("arr: ", arr)
-
-	fmt.Printf("time: %v", end-start)
+	// fastSort(0, len(arr)-1, &arr)
 
 	// {-9, 78, 0, 23, -567, 70}
 	// {-9, -567, 0, 23, 78, 70}
 
 	// 左边{-567, -9, 0, 23, 78, 70}
+
+	var arr [8000000]int
+	for i := 0; i < 8000000; i++ {
+		arr[i] = rand.Intn(9000000)
+	}
+
+	start := time.Now().Unix()
+	// QuickSort(0, len(arr)-1, &arr)
+	fastSort(0, len(arr)-1, &arr)
+	end := time.Now().Unix()
+	fmt.Printf("快速排序耗时：%d秒", end-start)
+	// 80w：快速排序耗时：0秒
+	// 800w: 1s
 }
